@@ -1,0 +1,54 @@
+
+{
+  "project": {
+    "name": "Smart Tea Garden Spraying System",
+    "mode": "virtual_simulation",
+    "hardware_connected": false
+  },
+  "field": {
+    "name": "Virtual Tea Garden",
+    "rows": 8,
+    "columns": 12,
+    "total_cells": 96,
+    "starting_latitude": 26.1445,
+    "starting_longitude": 91.7362,
+    "latitude_step": 0.00005,
+    "longitude_step": 0.00005
+  },
+  "simulation": {
+    "interval_ms": 1000,
+    "worker_path": "zigzag",
+    "show_worker_position": true,
+    "simulate_sensor_faults": true
+  },
+  "sensors": {
+    "flow": {
+      "enabled": true,
+      "normal_flow_min_lpm": 3.0,
+      "simulated_flow_min_lpm": 4.0,
+      "simulated_flow_max_lpm": 4.5
+    },
+    "pressure": {
+      "enabled": true,
+      "minimum_bar": 1.5,
+      "maximum_bar": 3.0,
+      "normal_simulated_bar": 2.0,
+      "low_pressure_test_bar": 1.1,
+      "high_pressure_test_bar": 3.5
+    },
+    "gps": {
+      "enabled": true,
+      "type": "simulated"
+    }
+  },
+  "spraying": {
+    "enabled": true,
+    "virtual_tank_capacity_litres": 100,
+    "spray_only_when_flow_and_pressure_normal": true
+  },
+  "coverage": {
+    "track_sprayed_cells": true,
+    "track_missed_cells": true,
+    "track_overlap_cells": true
+  }
+}

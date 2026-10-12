@@ -1,0 +1,628 @@
+
+/* ==========================================
+   SMART TEA GARDEN SPRAYING SYSTEM
+   Main Stylesheet - No Vehicle Component
+========================================== */
+
+/* ---------- GLOBAL SETTINGS ---------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #16784b;
+    --primary-dark: #0b5032;
+    --primary-light: #e2f5e9;
+
+    --background: #f3f7f4;
+    --white: #ffffff;
+    --text: #20352a;
+    --muted: #718078;
+
+    --green: #25a55b;
+    --red: #e74c3c;
+    --yellow: #f0b429;
+    --grey: #c9d1cc;
+
+    --border: #dce7df;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+    background-color: lightblue;
+
+}
+
+/* ---------- HEADER ---------- */
+
+.header {
+    background: linear-gradient(
+        135deg,
+        var(--primary-dark),
+        var(--primary)
+    );
+    color: var(--white);
+    padding: 22px 5%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.logo-section h1 {
+    font-size: 28px;
+    margin-bottom: 4px;
+}
+
+.logo-section p {
+    font-size: 14px;
+    opacity: 0.85;
+}
+
+.system-status {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    background: rgba(255, 255, 255, 0.15);
+    padding: 10px 15px;
+    border-radius: 25px;
+
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--yellow);
+}
+
+/* ---------- MAIN CONTAINER ---------- */
+
+.container {
+    width: 92%;
+    max-width: 1400px;
+    margin: 30px auto;
+}
+
+section {
+    margin-bottom: 22px;
+}
+
+h2 {
+    font-size: 21px;
+    margin-bottom: 12px;
+}
+
+h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+/* ---------- COMMON CARDS ---------- */
+
+.control-panel,
+.sensor-card,
+.status-card,
+.garden-section,
+.analytics-section,
+.live-data-section,
+.alerts-section {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px;
+
+    box-shadow: 0 4px 15px rgba(20, 60, 35, 0.04);
+}
+
+/* ---------- SIMULATION CONTROLS ---------- */
+
+.control-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.control-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+button {
+    border: none;
+    border-radius: 8px;
+    padding: 12px 18px;
+    min-height: 44px;
+
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+
+    transition: background 0.2s ease;
+}
+
+#startBtn {
+    background: var(--primary);
+    color: var(--white);
+}
+
+#startBtn:hover {
+    background: var(--primary-dark);
+}
+
+#stopBtn {
+    background: #fde5e3;
+    color: #a52a20;
+}
+
+#stopBtn:hover {
+    background: #f9cfcb;
+}
+
+#resetBtn {
+    background: #edf1ee;
+    color: var(--text);
+}
+
+#resetBtn:hover {
+    background: #dce5df;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ---------- SENSOR GRID ---------- */
+
+.sensor-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.sensor-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    min-width: 0;
+
+    transition: transform 0.2s ease;
+}
+
+.sensor-card:hover {
+    transform: translateY(-3px);
+}
+
+.sensor-icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--primary-light);
+    border-radius: 12px;
+    font-size: 24px;
+}
+
+.sensor-card p {
+    font-size: 13px;
+    color: var(--muted);
+    overflow-wrap: anywhere;
+}
+
+.sensor-card p strong {
+    color: var(--text);
+}
+
+.large-value {
+    font-size: 23px !important;
+    font-weight: bold;
+    color: var(--primary) !important;
+    margin: 8px 0 3px;
+}
+
+.sensor-card small {
+    color: var(--muted);
+}
+
+/* ---------- SPRAYING STATUS & COVERAGE ---------- */
+
+.status-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.status-card {
+    min-width: 0;
+}
+
+.spraying-status {
+    display: inline-block;
+    padding: 9px 16px;
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.spraying-status.active {
+    background: var(--primary-light);
+    color: var(--primary-dark);
+}
+
+.spraying-status.inactive {
+    background: #edf0ee;
+    color: #68746d;
+}
+
+.spraying-status.warning {
+    background: #fff0cc;
+    color: #805800;
+}
+
+.coverage-value {
+    font-size: 30px;
+    font-weight: bold;
+    color: var(--primary);
+    margin: 5px 0 12px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 12px;
+    background: #e5ece7;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(
+        90deg,
+        #198754,
+        #51c878
+    );
+    border-radius: 20px;
+    transition: width 0.3s ease;
+}
+
+/* ---------- VIRTUAL TEA GARDEN ---------- */
+
+.garden-section {
+    padding: 24px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.section-header p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+#workerPosition {
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    padding: 9px 13px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* Garden cells are generated using JavaScript */
+
+.garden-grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 4px;
+
+    background: #dce8d8;
+    border: 5px solid #dce8d8;
+    border-radius: 10px;
+
+    min-height: 280px;
+    overflow: hidden;
+}
+
+.garden-cell {
+    min-width: 0;
+    min-height: 25px;
+    background: var(--grey);
+    border-radius: 3px;
+}
+
+/* ---------- GARDEN CELL STATES ---------- */
+
+.garden-cell.not-sprayed {
+    background: var(--grey);
+}
+
+.garden-cell.sprayed {
+    background: var(--green);
+}
+
+.garden-cell.missed {
+    background: var(--red);
+}
+
+.garden-cell.overlap {
+    background: var(--yellow);
+}
+
+/* Worker position marker */
+
+.garden-cell.worker {
+    outline: 3px solid #173d29;
+    outline-offset: -3px;
+    box-shadow: inset 0 0 0 3px white;
+}
+
+/* ---------- GARDEN LEGEND ---------- */
+
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-top: 18px;
+
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.legend > div {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.legend-box {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    border-radius: 3px;
+}
+
+.legend-box.not-sprayed {
+    background: var(--grey);
+}
+
+.legend-box.sprayed {
+    background: var(--green);
+}
+
+.legend-box.missed {
+    background: var(--red);
+}
+
+.legend-box.overlap {
+    background: var(--yellow);
+}
+
+.legend-box.worker {
+    background: #173d29;
+    border: 2px solid white;
+    outline: 1px solid #173d29;
+}
+
+/* ---------- ANALYTICS ---------- */
+
+.analytics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.analytics-card {
+    background: var(--white);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    min-width: 0;
+}
+
+.analytics-card h3 {
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.analytics-card strong {
+    font-size: 29px;
+    color: var(--primary);
+    overflow-wrap: anywhere;
+}
+
+.analytics-card span {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* ---------- LIVE SENSOR DATA TABLE ---------- */
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    min-width: 440px;
+    border-collapse: collapse;
+    margin-top: 12px;
+}
+
+thead {
+    background: #edf5ef;
+}
+
+th,
+td {
+    padding: 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+}
+
+th {
+    color: var(--primary-dark);
+}
+
+tbody tr:hover {
+    background: #f7faf8;
+}
+
+.status-ok {
+    display: inline-block;
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    padding: 4px 9px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+/* ---------- SYSTEM ALERTS ---------- */
+
+.alert-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+
+    background: #edf5ef;
+    color: var(--primary-dark);
+
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 4px solid var(--primary);
+
+    font-size: 14px;
+}
+
+.alert-box.warning {
+    background: #fff4d7;
+    color: #805800;
+    border-left-color: var(--yellow);
+}
+
+.alert-box.error {
+    background: #fde8e6;
+    color: #982d25;
+    border-left-color: var(--red);
+}
+
+/* ---------- FOOTER ---------- */
+
+footer {
+    background: var(--primary-dark);
+    color: var(--white);
+    padding: 20px;
+    text-align: center;
+    font-size: 13px;
+}
+
+/* ---------- TABLET RESPONSIVENESS ---------- */
+
+@media (max-width: 1000px) {
+    .sensor-grid,
+    .analytics-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* ---------- MOBILE RESPONSIVENESS ---------- */
+
+@media (max-width: 700px) {
+    .container {
+        width: 94%;
+        margin-top: 18px;
+    }
+
+    .header {
+        padding: 20px 4%;
+    }
+
+    .logo-section h1 {
+        font-size: 23px;
+    }
+
+    .control-panel {
+        align-items: flex-start;
+    }
+
+    .status-section {
+        grid-template-columns: 1fr;
+    }
+
+    .garden-grid {
+        gap: 2px;
+        border-width: 3px;
+        min-height: 210px;
+    }
+
+    .garden-cell {
+        min-height: 17px;
+    }
+
+    .legend {
+        gap: 12px;
+    }
+}
+
+/* ---------- SMALL MOBILE ---------- */
+
+@media (max-width: 450px) {
+    .sensor-grid,
+    .analytics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sensor-card {
+        padding: 16px;
+    }
+
+    .control-buttons {
+        width: 100%;
+    }
+
+    .control-buttons button {
+        flex: 1 1 auto;
+    }
+
+    .section-header {
+        align-items: flex-start;
+    }
+
+    .garden-grid {
+        gap: 2px;
+        min-height: 170px;
+    }
+
+    .garden-cell {
+        min-height: 12px;
+    }
+}

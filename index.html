@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Tea Garden Spraying System</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <header class="header">
+
+        <div class="logo-section">
+            <h1>🌱 Smart Tea Garden</h1>
+            <p>Intelligent Spraying & Monitoring System</p>
+        </div>
+
+        <div class="system-status">
+            <span class="status-dot"></span>
+            <span id="systemStatus">System Offline</span>
+        </div>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+    <main class="container">
+
+
+        <!-- ================= CONTROL PANEL ================= -->
+        <section class="control-panel">
+
+            <h2>Simulation Control</h2>
+
+            <div class="control-buttons">
+
+                <button id="startBtn">
+                    ▶ Start Simulation
+                </button>
+
+                <button id="stopBtn">
+                    ⏹ Stop
+                </button>
+
+                <button id="resetBtn">
+                    🔄 Reset
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= SENSOR CARDS ================= -->
+        <section class="sensor-grid">
+
+
+            <!-- GPS -->
+            <div class="sensor-card">
+
+                <div class="sensor-icon">
+                    📍
+                </div>
+
+                <div>
+                    <h3>GPS</h3>
+
+                    <p>
+                        Latitude:
+                        <strong id="latitude">
+                            26.1445
+                        </strong>
+                    </p>
+
+                    <p>
+                        Longitude:
+                        <strong id="longitude">
+                            91.7362
+                        </strong>
+                    </p>
+
+                </div>
+
+            </div>
+
+
+       <!-- Spraying Coverage Card -->
+
+<div class="sensor-card">
+
+    <div class="sensor-icon">
+        🌿
+    </div>
+
+    <div>
+        <h3>Spraying Coverage</h3>
+
+        <p class="large-value">
+            <strong id="sprayingCoverage">
+                0
+            </strong>%
+        </p>
+
+        <small>Area covered</small>
+    </div>
+
+</div>
+
+            <!-- FLOW -->
+            <div class="sensor-card">
+
+                <div class="sensor-icon">
+                    
+                </div>
+
+                <div>
+
+                    <h3>Flow Sensor</h3>
+
+                    <p class="large-value">
+
+                        <strong id="flowStatus">
+                            OFF
+                        </strong>
+
+                    </p>
+
+                    <small id="flowMessage">
+                        No spraying
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRESSURE -->
+            <div class="sensor-card">
+
+                <div class="sensor-icon">
+                     
+                </div>
+
+                <div>
+
+                    <h3>Pressure</h3>
+
+                    <p class="large-value">
+
+                        <strong id="pressure">
+                            0.0
+                        </strong>
+
+                        bar
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= SPRAYING STATUS ================= -->
+        <section class="status-section">
+
+            <div class="status-card">
+
+                <h2>Spraying Status</h2>
+
+                <div
+                    id="sprayingStatus"
+                    class="spraying-status inactive">
+
+                    NOT ACTIVE
+
+                </div>
+
+            </div>
+
+
+            <div class="status-card">
+
+                <h2>Coverage</h2>
+
+                <div class="coverage-value">
+
+                    <span id="coverage">
+                        0
+                    </span>%
+
+                </div>
+
+                <div class="progress-bar">
+
+                    <div
+                        id="coverageBar"
+                        class="progress">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= VIRTUAL TEA GARDEN ================= -->
+        <section class="garden-section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2> Virtual Tea Garden</h2>
+
+                    <p>
+                        Real-time spraying simulation
+                    </p>
+
+                </div>
+
+                <div id="workerPosition">
+
+                    Worker: Idle
+
+                </div>
+
+            </div>
+
+
+            <!-- Garden Grid -->
+
+            <div
+                id="gardenGrid"
+                class="garden-grid">
+
+                <!-- JavaScript will generate
+                     the garden cells here -->
+
+            </div>
+
+
+            <!-- Legend -->
+
+            <div class="legend">
+
+                <div>
+                    <span class="legend-box not-sprayed"></span>
+                    Not Sprayed
+                </div>
+
+                <div>
+                    <span class="legend-box sprayed"></span>
+                    Sprayed
+                </div>
+
+                <div>
+                    <span class="legend-box missed"></span>
+                    Missed
+                </div>
+
+                <div>
+                    <span class="legend-box overlap"></span>
+                    Double Sprayed
+                </div>
+
+                <div>
+                    <span class="legend-box worker"></span>
+                    Worker
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= ANALYTICS ================= -->
+        <section class="analytics-section">
+
+            <h2>📊 Spraying Analytics</h2>
+
+
+            <div class="analytics-grid">
+
+
+                <div class="analytics-card">
+
+                    <h3>Sprayed Area</h3>
+
+                    <strong id="sprayedArea">
+                        0
+                    </strong>
+
+                    <span>m²</span>
+
+                </div>
+
+
+                <div class="analytics-card">
+
+                    <h3>Missed Zones</h3>
+
+                    <strong id="missedZones">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="analytics-card">
+
+                    <h3>Overlap Zones</h3>
+
+                    <strong id="overlapZones">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="analytics-card">
+                    <h3>Liquid Used</h3>
+                    <strong id="liquidUsed">0.00</strong>
+                    <span>L</span>
+                </div>
+
+                <div class="analytics-card">
+                    <h3>Tank Remaining</h3>
+                    <strong id="tankLevel">100.00</strong>
+                    <span>L</span>
+                </div>
+
+                <div class="analytics-card">
+                    <h3>Spraying Time</h3>
+                    <strong id="sprayingTime">0</strong>
+                    <span>seconds</span>
+                </div>
+
+                <div class="analytics-card">
+
+                    <h3>Spraying Efficiency</h3>
+
+                    <strong id="efficiency">
+                        0
+                    </strong>
+
+                    <span>%</span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= LIVE DATA ================= -->
+        <section class="live-data-section">
+
+            <h2>📡 Live Sensor Data</h2>
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Parameter</th>
+
+                            <th>Value</th>
+
+                            <th>Status</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>GPS</td>
+
+                            <td id="gpsData">
+                                26.1445, 91.7362
+                            </td>
+
+                            <td>
+                                <span class="status-ok">
+                                    Ready
+                                </span>
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>Flow</td>
+
+                            <td id="flowData">
+                                0 L/min
+                            </td>
+
+                            <td id="flowHealth">
+                                OFF
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>Pressure</td>
+
+                            <td id="pressureData">
+                                0 bar
+                            </td>
+
+                            <td id="pressureHealth">
+                                Normal
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>Spraying</td>
+
+                            <td id="sprayingData">
+                                Inactive
+                            </td>
+
+                            <td id="sprayingHealth">
+                                -
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= ALERTS ================= -->
+        <section class="alerts-section">
+
+            <h2>⚠️ System Alerts</h2>
+
+            <div
+                id="alertBox"
+                class="alert-box">
+
+
+                <span id="alertMessage">System ready. Start the simulation.</span>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            Smart Tea Garden Spraying System |
+            Virtual Simulation
+        </p>
+
+    </footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+<script src="js/simulator.js"></script>
+<script src="js/gps.js"></script>
+<script src="js/sensors.js"></script>
+<script src="js/spraying.js"></script>
+<script src="js/coverage.js"></script>
+<script src="js/alerts.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+
+</html>
